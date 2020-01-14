@@ -43,6 +43,14 @@ class Cladiri extends Model
      */
     public function street()
     {
-        return $this->belongsTo('App\Models\Strazi','id_strada');
+        return $this->hasOne('App\Models\Strazi','id_strada');
+    }
+
+    /**
+     * Get the neighbourhood that it belongs to.
+     */
+    public function tip_cladire()
+    {
+        return $this->hasOne('App\Models\TipCladire','id_tip_cladire');
     }
 }

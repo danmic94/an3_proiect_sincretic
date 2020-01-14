@@ -32,4 +32,12 @@ class Cartiere extends Model
     {
         return $this->hasMany('App\Models\Strazi','id_cartier','id');
     }
+
+    /**
+     * Get streets associated with the neighbourhood
+     */
+    public function cladiri()
+    {
+        return $this->hasManyThrough('App\Models\Cladiri','App\Models\Strazi','id_cartier','id_strada');
+    }
 }

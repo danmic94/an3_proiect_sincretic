@@ -44,4 +44,12 @@ class Strazi extends Model
     {
         return $this->belongsTo('App\Models\Cartiere','id_cartier','id');
     }
+
+    /**
+     * Get the neighbourhood that it belongs to.
+     */
+    public function tip_strada()
+    {
+        return $this->hasOne('App\Models\TipStrada','id_tip_strada','id');
+    }
 }
