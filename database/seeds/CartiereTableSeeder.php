@@ -18,9 +18,9 @@ class CartiereTableSeeder extends Seeder
         // Create random entries for our expenses table:
         $cartiere = [ 'Zorilor', 'Marasti', 'Buna Ziua', 'Baciu', 'Manastur'];
         $nr_cartiere = sizeof($cartiere);
-        for ($i = 0; $i < sizeof($nr_cartiere); $i++) {
+        for ($i = 0; $i < $nr_cartiere; $i++) {
             Cartiere::create([
-                'name' => $cartiere[$nr_cartiere],
+                'nume_cartier' => $cartiere[$i],
             ]);
         }
     }

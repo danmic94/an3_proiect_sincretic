@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CartiereTableSeeder::class);
-        $this->call(TipStradaTableSeeder::class);
-        $this->call(TipCladireTableSeeder::class);
-        $this->call(StraziTableSeeder::class);
-        $this->call(CladiriTableSeeder::class);
+//        $this->call(TipStradaTableSeeder::class);
+//        $this->call(TipCladireTableSeeder::class);
+//        $this->call(StraziTableSeeder::class);
+//        $this->call(CladiriTableSeeder::class);
     }
 }
