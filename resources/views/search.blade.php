@@ -47,7 +47,6 @@
     $('input.typeahead').typeahead({
         source:  function (query) {
             const searchedBy = this.$element.attr('id');
-            debugger
             return $.get(path, { search: query, by_attribute: searchedBy }, function (data) {
                 let resultData = data;
                 $("#evidenta > tbody > tr").remove();
