@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel 6 Autocomplete Search using Bootstrap Typeahead JS - ItSolutionStuff.com</title>
+    <title>Cautare Strazi si Coduri Postale</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
@@ -10,7 +10,7 @@
 
 <div class="container">
     <section >
-        <h1>Cautare Baza De Date Strazi si altele</h1>
+        <h1>Orasul Digitalizat</h1>
         <div class="col-md-12">
             <label for="street_search">Cautare Strada</label>
             <input id="street_search" class="typeahead form-control" type="text">
