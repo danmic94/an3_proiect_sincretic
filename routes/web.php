@@ -14,3 +14,5 @@
 Route::get('search', 'SearchController@index')->name('search');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 Route::get('streets', 'StreetsController@index')->name('streets');
+Route::get('cartiere', 'InforCartiereController@index')->name('cartiere');
+Route::get('fetchChartData', 'InforCartiereController@getChartData')->name('fetchChartData');

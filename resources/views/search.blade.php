@@ -43,7 +43,7 @@
 </div>
 
 <script type="text/javascript">
-    var path = "{{ route('autocomplete') }}";
+    const path = "{{ route('autocomplete') }}";
     $('input.typeahead').typeahead({
         source:  function (query) {
             const searchedBy = this.$element.attr('id');
