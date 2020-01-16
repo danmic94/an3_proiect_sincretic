@@ -10,82 +10,125 @@
 <body>
 <div style="margin-top: auto; margin-bottom: auto">
     <canvas id="canvas" style="display: block; width: auto; height: auto;" width="1895" height="947" class="chartjs-render-monitor"></canvas>
+    <script type="application/javascript">
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        $(document).ready(function () {
+
+            const path = "{{ route('fetchChartData') }}";
+            let chartDataset;
+
+            function getChartDataSet(ajaxurl) {
+                return ($.ajax({
+                    url: ajaxurl,
+                    type: 'GET',
+                    crossDomain: true,
+                    async: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        return result;
+                    },
+                    error: function () {
+                        alert('Request Failed!');
+                    }
+                }));
+            };
+
+            const responseData = JSON.parse(getChartDataSet(path).responseText);
+            chartDataset = [];
+
+            chartDataset = $.map(responseData.data, function (value, index) {
+                return (
+                    {
+                        label: index,
+                        backgroundColor: getRandomColor(),
+                        borderColor: "black",
+                        borderWidth: 1,
+                        data: value
+                    }
+                );
+            });
+
+            const barChartData = {
+                labels: responseData.labels,
+                datasets: chartDataset,
+            };
+
+            const chartOptions = {
+                responsive: true,
+                legend: {
+                    position: "top"
+                },
+                title: {
+                    display: true,
+                    text: "Chart.js Bar Chart"
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+
+            window.onload = function () {
+                const ctx = document.getElementById("canvas").getContext("2d");
+                window.myBar = new Chart(ctx, {
+                    type: "bar",
+                    data: barChartData,
+                    options: chartOptions
+                });
+            };
+
+
+            // {
+            //     "labels":[
+            //     "Baciu",
+            //     "Buna Ziua",
+            //     "Manastur",
+            //     "Marasti",
+            //     "Zorilor"
+            // ],
+            //     "data":{
+            //     "Baciu":{
+            //         "bulevarde":2,
+            //             "piete":3,
+            //             "strzi":5
+            //     },
+            //     "Buna Ziua":{
+            //         "bulevarde":4,
+            //             "piete":4,
+            //             "strzi":2
+            //     },
+            //     "Manastur":{
+            //         "bulevarde":4,
+            //             "piete":4,
+            //             "strzi":2
+            //     },
+            //     "Marasti":{
+            //         "bulevarde":6,
+            //             "piete":1,
+            //             "strzi":3
+            //     },
+            //     "Zorilor":{
+            //         "bulevarde":1,
+            //             "piete":4,
+            //             "strzi":5
+            //     }
+            // }
+            // }
+
+        })
+    </script>
 </div>
 </body>
-<script type="application/javascript">
-
-    $(document).ready(function () {
-        const path = "{{ route('fetchChartData') }}";
-        console.log(path);
-        let chartDataset;
-        $.get(path, null, function (data) {
-            console.log(data);
-        });
-
-        window.chartColors = {
-            "red": "rgb(255, 99, 132)",
-            "green": "rgb(75, 192, 192)",
-            "blue": "rgb(54, 162, 235)"
-        }
-        const barChartData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'Bulevard',
-                backgroundColor: window.chartColors.red,
-                stack: 'Stack 0',
-                data: [
-                    11,
-                    1,
-                    22,
-                ]
-            }, {
-                label: 'Piata',
-                backgroundColor: window.chartColors.blue,
-                stack: 'Stack 1',
-                data: [
-                    7,
-                    2,
-                    22,
-                ]
-            }, {
-                label: 'Strada',
-                backgroundColor: window.chartColors.green,
-                stack: 'Stack 2',
-                data: [
-                    -19,
-                    3,
-                    22,
-                ]
-            }]
-
-        };
-        window.onload = function () {
-            const ctx = document.getElementById('canvas').getContext('2d');
-            window.myBar = new Chart(ctx, {
-                type: 'bar',
-                data: barChartData,
-                options: {
-                    title: {
-                        display: true,
-                        text: 'Chart.js Bar Chart - Stacked'
-                    },
-                    tooltips: {
-                        mode: 'index',
-                        intersect: false
-                    },
-                    responsive: true,
-                    scales: {
-                        xAxes: [{
-                            stacked: true,
-                        }],
-                        yAxes: [{
-                            stacked: true
-                        }]
-                    }
-                }
-            });
-        };
-
-    })
-</script>
 </html>
