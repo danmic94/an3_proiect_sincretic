@@ -8,8 +8,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
 </head>
 <body>
-<div style="margin-top: auto; margin-bottom: auto">
-    <canvas id="canvas" style="display: block; width: auto; height: auto;" width="1895" height="947" class="chartjs-render-monitor"></canvas>
+<div style="margin: auto; height: 25%; width: 75%;">
+    <canvas id="canvas" style="display: block; width: auto; height: auto;" class="chartjs-render-monitor"></canvas>
     <script type="application/javascript">
 
         function getRandomColor() {
